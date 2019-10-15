@@ -47,7 +47,9 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-            <form class="form" method="" action="">
+
+            <!-- form method is post  -->
+            <form class="form" method="post" action="main.js" id = "login-page">
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Login</h4>
                 <div class="social-line">
@@ -56,13 +58,15 @@
               
               <p class="description text-center">Enter Your Details</p>
               <div class="card-body">
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
                       <i class="material-icons">face</i>
                     </span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Username...">
+                  <!--  inputs use id param (use it as a variable so make it unique please-->
+                  <input type="text" class="form-control" placeholder="Username..." id = "login-page-username">
                 </div>
 
                 <div class="input-group">
@@ -71,11 +75,13 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Password...">
+                  <input type="password" class="form-control" placeholder="Password..." id = "login-page-password">
                 </div>
+                
               </div>
               <div class="footer text-center">
-                <a onclick="myFunction()" class="btn btn-primary btn-link btn-wd btn-lg">LOG IN</a>
+                <!--  button style takes onclick param and then call desired method from main.js as shown below-->
+                <a onclick="login()" class="btn btn-primary btn-link btn-wd btn-lg">LOG IN</a>
               </div>
             </form>
           </div>

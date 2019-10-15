@@ -1,19 +1,31 @@
-function myFunction() {
+function login() {
      
     var request= new XMLHttpRequest();
 
     var formData = new FormData();
 
-    formData.append("username", "3750662");
-    formData.append("password", "areeb123"); // number 123456 is immediately converted to a string "123456"
+    // retreiving data from html page
+    var username = document.getElementById("login-page-username").value;
+    var password = document.getElementById("login-page-password").value;
 
-	  request.open("POST","http://127.0.0.1:8000/api/login");
+    console.log(username + " " + password);
+
+
+    formData.append("username", username);
+    formData.append("password", password); 
+
+    //sending post data to external api
+    request.open("POST","http://127.0.0.1:8000/api/login");
+    
+
+    // logic for handling received data
 	  request.onload=function(){
 		  var data=JSON.parse(request.responseText);
-      console.log(data);
-      
+      console.log(data);      
+
       if (data.response){
-        document.location = 'landing-page.html'
+        console.log("SLAMAT");
+        //document.location = 'landing-page.html'
       }
     }
 
