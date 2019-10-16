@@ -1,1 +1,1 @@
-STRUT frontend using Material Design by Google
+STRUT frontend using Material Kit based on Material Design by Google
