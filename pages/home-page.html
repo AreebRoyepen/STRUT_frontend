@@ -34,6 +34,49 @@
   <link href="../assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+
+
+  <style>
+    .my-container{
+      margin: 2 rem;
+    }
+    .my-row1 {
+      margin_top;0;
+      width:100%;
+      height:100%;
+      padding: 1rem;
+      padding_bottom:3rem;
+    }
+
+    .my-row2 {
+      width:100%;
+      height:100%;
+      margin_top: 2rem;
+      margin_bottom:3rem;
+      margin_left:1rem;
+      padding_left: 5rem;
+
+    }
+
+    .my-row3 {
+      width:100%;
+      height:100%;
+      margin_top: 2rem;
+      margin_bottom:3rem;
+      margin_left:1rem;
+      padding_left: 5rem;
+    }
+
+    .my-row4 {
+      width:100%;
+      height:100%;
+      margin_top: 2rem;
+      margin_bottom:3rem;
+      margin_left:1rem;
+      padding_left: 5rem;
+    }
+  
+  </style>
 </head>
 
 <body class="landing-page sidebar-collapse">
@@ -103,56 +146,53 @@
   </div>
   
   <div class="page-header header-filter" style="background-image: url('../assets/img/Background.png')"; background-size: cover; background-position: top center;>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-          <div class="card card-login">
-
-            <!-- form method is post  -->
-            <div class="form" id = "login-page">
-              <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">Directions</h4>
-                <div class="social-line">
-                </div>
-              </div>
-              
-              <p class="description text-center">Enter Your Details</p>
-              <div class="card-body">
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="far fa-dot-circle"></i>
-                    </span>
-                  </div>
-                  <!--  inputs use id param (use it as a variable so make it unique please-->
-                  <input type="text" class="form-control" placeholder="Your location Eg. A1..." id = "source">
-                </div>
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="fas fa-map-marker-alt"></i>
-                    </span>
-                  </div>
-                  <input type="password" class="form-control" placeholder="Your Destination Eg. B1..." id = "destination">
-                </div>
-                
-              </div>
-              <div class="footer text-center">
-                <!--  button style takes onclick param and then call desired method from main.js as shown below-->
-        
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#myModal"  onclick="alert('hello')" >
-                  <i class="material-icons">library_books</i> GET DIRECTIONS
-                <div class="ripple-container"></div></button>
-              </div>
-            </div>
-          </div>
+    <div class="container my-container">
+      <div class="row my-row1">
+        <div class="col my-col1">
+               <img src="../assets/img/icons/back.png" class="img-fluid" style="width:60px; height:100%">
         </div>
+        <div class="col my-col1">
+        </div> 
+        <div class="col my-col1">
+                 <img src="../assets/img/icons/user.png" class="img-fluid" style="width:60px; height:100%">
+        </div>  
       </div>
+      <div class="row my-row2">
+        <div class="col my-col2">
+                 <img src="../assets/img/icons/directions.png" class="img-fluid" style="width:110px; height:100%">
+        </div>
+        <div class="col my-col2">
+        </div> 
+        <div class="col my-col2">
+                  <img src="../assets/img/icons/timetable.png" class="img-fluid" style="width:110px; height:100%">
+        </div> 
+      </div>
+      <div class="row my-row3">
+        <div class="col my-col3">
+                   <img src="../assets/img/icons/exam-timetable.png" class="img-fluid" style="width:110px; height:100%">
+
+        </div>
+        <div class="col my-col3">
+        </div> 
+        <div class="col my-col3">
+                    <img src="../assets/img/icons/book-venue.png" class="img-fluid" style="width:110px; height:100%">
+        </div> 
+      </div>
+      <div class="row my-row4">
+        <div class="col my-col4">
+        </div>
+        <div class="col my-col4">
+                    <img src="../assets/img/icons/logout.png" class="img-fluid" style="width:110px; height:100%">
+
+        </div> 
+        <div class="col my-col4">
+        </div> 
+      </div>
+
+
+    </div>
     </div>
 
-   
   
       
   <!--   Core JS Files   -->
