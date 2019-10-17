@@ -12,7 +12,7 @@ function login() {
 
 
     formData.append("username", username);
-    formData.append("password", password); 
+    formData.append("password", password);
 
     //sending post data to external api
     request.open("POST","http://127.0.0.1:8000/api/login");
@@ -30,13 +30,75 @@ function login() {
     }
 
 	request.send(formData);
-  }
+}
 
-  function render_data(data_all){
 
-    var data_string = "";
-    for(x=0;x<data_all.data.length;x++){
-      data_string+=("<p id='spin-in' style='background-color: rgba(255, 69, 0,"+1.5/(x+1)+");'>"+data_all.data[x].note+"</p>");
+// provides data to populate timetable
+// need to provide student number
+  function timetable(){
+
+    var request= new XMLHttpRequest();
+
+    var formData = new FormData();
+
+    // retreiving data from html page
+    var username = document.getElementById("timetable-username").value;
+
+    console.log(username);
+
+
+    formData.append("studentNumber", username);
+
+    //sending post data to external api
+    request.open("POST","http://127.0.0.1:8000/api/viewTimetable");
+    
+
+    // logic for handling received data
+	  request.onload=function(){
+		  var data=JSON.parse(request.responseText);
+      console.log(data);      
     }
 
+	  request.send(formData);
+  
+
   }
+
+
+
+  // for directions page
+  function getBuildingNames(){
+
+    var request= new XMLHttpRequest();
+
+    var formData = new FormData();
+
+    // retreiving data from html page
+    var src = document.getElementById("source").value;
+
+    var dst = document.getElementById("destination").value;
+
+    console.log(src + " " + dst);
+
+
+    formData.append("from", src);
+    formData.append("to", dst);
+
+
+    //sending post data to external api
+    request.open("POST","http://127.0.0.1:8000/api/navigate");
+    
+
+    // logic for handling received data
+	  request.onload=function(){
+		  var data=JSON.parse(request.responseText);
+      console.log(data);      
+    }
+
+	  request.send(formData);
+  
+
+  }
+
+
+
