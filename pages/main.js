@@ -25,7 +25,7 @@ function login() {
 
       if (data.response){
         console.log("SLAMAT");
-        //document.location = 'landing-page.html'
+        document.location = 'home-page.html'
       }
     }
 
