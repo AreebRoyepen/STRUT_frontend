@@ -69,11 +69,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-              <i class="far fa-building"></i> Book Venue
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
               <i class="fas fa-sign-out-alt"> </i> Logout
             </a>
           </li>
@@ -81,7 +76,7 @@
       </div>
     </div>
   </nav>
-
+  <!-- Modal  -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -112,40 +107,54 @@
             <!-- form method is post  -->
             <div class="form" id = "login-page">
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">Directions</h4>
+                <h4 class="card-title">Book Venue</h4>
                 <div class="social-line">
                 </div>
               </div>
               
-              <p class="description text-center">Enter Your Details</p>
+              <p class="description text-center">Enter Booking Details</p>
               <div class="card-body">
 
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
-                      <i class="far fa-dot-circle"></i>
+                      <i class="fas fa-building"></i>
                     </span>
                   </div>
                   <!--  inputs use id param (use it as a variable so make it unique please-->
-                  <input type="text" class="form-control" placeholder="Your location Eg. A1..." id = "source">
+                  <input type="text" class="form-control" placeholder="Venue Eg. B1..." id = "source">
                 </div>
 
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
-                      <i class="fas fa-map-marker-alt"></i>
+                      <i class="fas fa-calendar-alt"></i>
                     </span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Your Destination Eg. B1..." id = "destination">
+                  <input type="password" class="form-control" placeholder="Date..." id = "destination">
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fas fa-clock"></i>
+                    </span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Period..." id = "destination">
                 </div>
                 
               </div>
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
         
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#myModal"  onclick="alert('hello')" >
-                  <i class="material-icons">library_books</i> GET DIRECTIONS
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem">
+                   CHECK AVAILABILITY
                 <div class="ripple-container"></div></button>
+
+                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#myModal"  onclick="alert('hello')" >
+                  <i class="material-icons">library_books</i>  BOOK VENUE   
+                <div class="ripple-container"></div></button>
+                
               </div>
             </div>
           </div>

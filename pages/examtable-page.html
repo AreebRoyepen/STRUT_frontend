@@ -82,29 +82,9 @@
     </div>
   </nav>
 
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <i class="material-icons">clear</i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-link">Nice Button</button>
-          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
   
   <div class="page-header header-filter" style="background-image: url('../assets/img/Background.png')"; background-size: cover; background-position: top center;>
-    <div class="container">
+    <div class="container" style="padding-top:4rem;">
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
@@ -112,40 +92,82 @@
             <!-- form method is post  -->
             <div class="form" id = "login-page">
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">Directions</h4>
+                <h4 class="card-title">Exam Timetable</h4>
                 <div class="social-line">
                 </div>
               </div>
-              
-              <p class="description text-center">Enter Your Details</p>
-              <div class="card-body">
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="far fa-dot-circle"></i>
-                    </span>
-                  </div>
-                  <!--  inputs use id param (use it as a variable so make it unique please-->
-                  <input type="text" class="form-control" placeholder="Your location Eg. A1..." id = "source">
+                  <div class="table-responsive">
+                    <table class="table" align="center">
+                      <thead align="center">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Module</th>
+                          <th scope="col">Venue</th>
+                          <th scope="col">Time</th>
+                        </tr>
+                      </thead>
+                      <tbody align="center">
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Cell</td>
+                          <td>Cell</td>
+                          <td>
+                            <a href="#child4">A1</a>
+                          </td>
+                          <td>Cell</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Cell</td>
+                          <td>Cell</td>
+                          <td>
+                            <a href="#child4">A2</a>
+                          </td>
+                          <td>Cell</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Cell</td>
+                          <td>Cell</td>
+                          <td>
+                            <a href="#child4">A3</a>
+                          </td>
+                          <td>Cell</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4</th>
+                          <td>Cell</td>
+                          <td>Cell</td>
+                          <td>
+                            <a href="#child4">B2</a>
+                          </td>
+                          <td>Cell</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">5</th>
+                          <td>Cell</td>
+                          <td>Cell</td>
+                          <td>
+                            <a href="#child4">B1</a>
+                          </td>
+                          <td>Cell</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">6</th>
+                          <td>Cell</td>
+                          <td>Cell</td>
+                          <td>
+                            <a href="#child4">B3</a>
+                          </td>
+                          <td>Cell</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                      <div class="get_text" style= "padding: 1.5rem">
+                        <p> TO GET DIRECTIONS: Click on the on the lecture period</p>
+                      </div>
                 </div>
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="fas fa-map-marker-alt"></i>
-                    </span>
-                  </div>
-                  <input type="password" class="form-control" placeholder="Your Destination Eg. B1..." id = "destination">
-                </div>
-                
-              </div>
-              <div class="footer text-center">
-                <!--  button style takes onclick param and then call desired method from main.js as shown below-->
-        
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#myModal"  onclick="alert('hello')" >
-                  <i class="material-icons">library_books</i> GET DIRECTIONS
-                <div class="ripple-container"></div></button>
               </div>
             </div>
           </div>
