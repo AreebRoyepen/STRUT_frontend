@@ -25,7 +25,9 @@ function login() {
 
       if (data.response){
         console.log("SLAMAT");
+        
         document.location = 'home-page.html'
+        console.log(data.response);
       }
     }
 
@@ -42,25 +44,28 @@ function login() {
     var formData = new FormData();
 
     // retreiving data from html page
-    var username = document.getElementById("timetable-username").value;
-
+    //var username = document.getElementById("timetable-username").value;
+    username = "3750662"
     console.log(username);
-
-
     formData.append("studentNumber", username);
 
     //sending post data to external api
     request.open("POST","http://127.0.0.1:8000/api/viewTimetable");
-    
 
     // logic for handling received data
 	  request.onload=function(){
 		  var data=JSON.parse(request.responseText);
-      console.log(data);      
+      console.log(data);   
+
+      //data = getVenueName(data);
+      
+      document.getElementById("x").innerHTML = "bob";
+
+      console.log(data);
+
     }
 
-	  request.send(formData);
-  
+	  request.send(formData); 
 
   }
 
