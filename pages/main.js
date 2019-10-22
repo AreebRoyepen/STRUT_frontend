@@ -235,13 +235,31 @@ function userInfo(){
   formData.append("studentNumber", "3750662");
 
   //sending post data to external api
-  request.open("POST","http://127.0.0.1:8000/api/viewModules");
+  request.open("POST","http://127.0.0.1:8000/api/studentDetails");
   
 
   // logic for handling received data
   request.onload=function(){
     var data=JSON.parse(request.responseText);
-    console.log(data + "<-- supposed to be here");      
+    console.log("is this thing on")
+
+    console.log(data.modules[0]);
+    document.getElementById("name").innerHTML = data.user.first_name;
+    document.getElementById("last name").innerHTML = data.user.last_name;
+    document.getElementById("email").innerHTML = String(data.user.username) + "@myuwc.ac.za" ;
+    document.getElementById("student number").innerHTML = data.user.username ;
+    var modules ="";
+    for(var i=0; i<data.modules.length;i++){
+      if (i==0){
+        modules += String(data.modules[i].modulename);
+
+      }else{
+      modules +=", " + String(data.modules[i].modulename);
+      }
+    }
+    document.getElementById("modules").innerHTML = modules;
+      
+
 
     if (data.response){
       console.log("SLAMAT");
