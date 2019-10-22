@@ -34,9 +34,11 @@
   <link href="../assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <script src = "main.js" >  </script>
+
 </head>
 
-<body class="landing-page sidebar-collapse">
+<body class="landing-page sidebar-collapse"   onload ="examtimetable()">
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
@@ -104,68 +106,122 @@
                           <th scope="col">Date</th>
                           <th scope="col">Module</th>
                           <th scope="col">Venue</th>
-                          <th scope="col">Time</th>
+                          <th scope="col">Period</th>
                         </tr>
-                      </thead>
-                      <tbody align="center">
+                      </thead>  
+                      <tbody>
                         <tr>
                           <th scope="row">1</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>
-                            <a href="../pages/directions-page.html">A1</a>
+                          <td id ="1x1"></td>
+                          <td id ="1x2"></td>
+                          <td id ="1x3">
+                          <script> 
+                          if (localStorage.getItem("exam-1x3") != null){
+                            document.getElementById('1x3').onclick = function() {
+                              var value1="exam-1x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script>
                           </td>
-                          <td>Cell</td>
+                          <td id ="1x4"></td>
                         </tr>
                         <tr>
                           <th scope="row">2</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>
-                            <a href="#child4">A2</a>
+                          <td id ="2x1" ></td>
+                          <td id ="2x2" ></td>
+                          <td id ="2x3" >
+                          <script> 
+                          if (localStorage.getItem("exam-2x3") != null){
+                            document.getElementById('2x3').onclick = function() {
+                              var value1="exam-2x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script>
                           </td>
-                          <td>Cell</td>
+                          <td id ="2x4" ></td>
                         </tr>
                         <tr>
                           <th scope="row">3</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>
-                            <a href="#child4">A3</a>
+                          <td id ="3x1" ></td>
+                          <td id ="3x2" ></td>
+                          <td id ="3x3" >
+                          <script> 
+                          if (localStorage.getItem("exam-3x3") != null){
+                            document.getElementById('3x3').onclick = function() {
+                              var value1="exam-3x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script>
                           </td>
-                          <td>Cell</td>
+                          <td id ="3x4" ></td>
                         </tr>
                         <tr>
                           <th scope="row">4</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>
-                            <a href="#child4">B2</a>
+                          <td id ="4x1" ></td>
+                          <td id ="4x2" ></td>
+                          <td id ="4x3" >
+                          <script> 
+                          if (localStorage.getItem("exam-4x3") != null){
+                            document.getElementById('4x3').onclick = function() {
+                              var value1="exam-4x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script>
                           </td>
-                          <td>Cell</td>
+                          <td id ="4x4" ></td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>
-                            <a href="#child4">B1</a>
+                          <td id ="5x1" ></td>
+                          <td id ="5x2" ></td>
+                          <td id ="5x3" >
+                          <script> 
+                          if (localStorage.getItem("exam-5x3") != null){
+                            document.getElementById('5x3').onclick = function() {
+                              var value1="exam-5x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script>
                           </td>
-                          <td>Cell</td>
+                          <td id ="5x4" ></td>
                         </tr>
-                        <tr>
+                        <tr>  
                           <th scope="row">6</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>
-                            <a href="#child4">B3</a>
+                          <td id ="6x1" ></td>
+                          <td id ="6x2" ></td>
+                          <td id ="6x3" >
+                          <script> 
+                          if (localStorage.getItem("exam-6x3") != null){
+                            document.getElementById('6x3').onclick = function() {
+                              var value1="exam-6x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script>
                           </td>
-                          <td>Cell</td>
+                          <td id ="6x4" ></td>
                         </tr>
                       </tbody>
                     </table>
                       <div class="get_text" style= "padding: 1.5rem">
-                        <p> TO GET DIRECTIONS: Click on the on the lecture period</p>
+                        <p> TO GET DIRECTIONS: Click on the venue to get directions</p>
                       </div>
                 </div>
               </div>

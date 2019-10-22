@@ -34,6 +34,8 @@
   <link href="../assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <script src = "main.js" >  </script>
+
 </head>
 
 <body class="landing-page sidebar-collapse">
@@ -127,23 +129,37 @@
                     </span>
                   </div>
                   <!--  inputs use id param (use it as a variable so make it unique please-->
-                  <input type="text" class="form-control" placeholder="Your location Eg. A1..." id = "source">
+                  <input type="text" class="form-control" placeholder="Your location Eg. A1..." id = "location">
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" >
                   <div class="input-group-prepend">
                     <span class="input-group-text">
                       <i class="fas fa-map-marker-alt"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Your Destination Eg. B1..." id = "destination">
+                  <input id="testing" name='testing' type="text" class="form-control" placeholder="Your Destination Eg. B1..."  ;>
+                  <script>
+                      var queryString = decodeURIComponent(window.location.search);
+                      queryString = queryString.substring(1);
+                      queryString.slice(5,);
+                      console.log(queryString)
+                      console.log( queryString.slice(6,) + " <--here");
+
+
+                      document.getElementById('testing').value = localStorage.getItem(queryString.slice(6,));
+                      console.log("trying to access - " + queryString.slice(6,) );
+
+                      
+                     // localStorage.clear();
+                  </script>
                 </div>
                 
               </div>
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
         
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#myModal"  onclick="alert('hello')" >
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#myModal"  onclick=getdirections() >
                   <i class="material-icons">library_books</i> GET DIRECTIONS
                 <div class="ripple-container"></div></button>
               </div>
