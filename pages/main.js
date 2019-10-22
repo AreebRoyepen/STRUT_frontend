@@ -241,17 +241,16 @@ function userInfo(){
   // logic for handling received data
   request.onload=function(){
     var data=JSON.parse(request.responseText);
-    console.log(data);      
+    console.log(data + "<-- supposed to be here");      
 
     if (data.response){
       console.log("SLAMAT");
       
       //document.location = ''
 
-
     }
- 	request.send(formData);
   
   }
+  request.send(formData);
 
 }
