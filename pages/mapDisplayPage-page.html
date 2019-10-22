@@ -20,6 +20,8 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
+  <script src = "main.js" > </script>
+
   <!--Map Scripts-->  
   <meta charset="utf-8" />
   <script type='text/javascript'>
@@ -71,6 +73,24 @@
               routeMode: Microsoft.Maps.Directions.RouteMode.walking
           });
           
+
+  // GETTING VALUES FROM DIRECTIONS PAGE
+
+  var queryString = decodeURIComponent(window.location.search);
+  queryString = queryString.substring(1);
+  var queries = queryString.split("&");
+  var arrayOfArgs = []
+  for (var i = 0; i < queries.length; i++)
+  {
+    console.log(queries[i]);
+    x = queries[i].split("=");
+
+    arrayOfArgs.push(x[1]);
+  }
+
+  console.log(arrayOfArgs);
+
+
           //Create waypoints to route between two places
           //Departure
           directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address: '-33.932356, 18.627803' }));
