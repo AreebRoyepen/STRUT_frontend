@@ -34,9 +34,11 @@
   <link href="../assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <script src = "main.js" >  </script>
+
 </head>
 
-<body class="landing-page sidebar-collapse">
+<body class="landing-page sidebar-collapse" >
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
@@ -64,7 +66,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/directions-page.html" onclick="scrollToDownload()">
-              <i class="fas fa-calendar-alt"></i> Get Directions
+              <i class="fas fa-map-marker-alt"></i> Get Directions
             </a>
           </li>
           <li class="nav-item">
@@ -127,7 +129,7 @@
                     </span>
                   </div>
                   <!--  inputs use id param (use it as a variable so make it unique please-->
-                  <input type="text" class="form-control" placeholder="Venue :  Eg B1..." id = "source">
+                  <input type="text" class="form-control" placeholder="Venue :  Eg B1..." id = "venue">
                 </div>
 
                 <div class="input-group">
@@ -136,7 +138,7 @@
                       <i class="fas fa-calendar-alt"></i>
                     </span>
                   </div>
-                  <input type="date" id="start" name="check venue date" value="2018-07-22" min="2019-01-01" max="2019-12-31">                
+                  <input type="date" id="date" name="check venue date" value="2018-07-22" min="2019-01-01" max="2019-12-31">                
                   </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -144,14 +146,14 @@
                       <i class="fas fa-clock"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Period: Eg 1-5..." id = "destination">
+                  <input type="text" class="form-control" placeholder="Period: Eg 1-5..." id = "period">
                 </div>
                 
               </div>
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
         
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem">
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem" onclick="bookvenue()" >
                    CHECK AVAILABILITY
                 <div class="ripple-container"></div></button>
 

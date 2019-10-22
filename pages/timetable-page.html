@@ -34,15 +34,15 @@
   <link href="../assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
-  <script src = "main.js" > </script>
+  <script src = "main.js" >  </script>
 </head>
 
-<body class="landing-page sidebar-collapse">
+<body class="landing-page sidebar-collapse"  onload ="timetable()";>
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand"  >
-          <img onclick="timetable()" src="../assets/img/logo.png" class="img-fluid" style="width: 50%;"> 
+        <a class="navbar-brand" href="../pages/home-page.html"  >
+          <img src="../assets/img/logo.png" class="img-fluid" style="width: 50%;"> 
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -93,12 +93,12 @@
             <!-- form method is post  -->
             <div class="form" id = "login-page">
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title" id = "x">Timetable</h4>
+                <h4 class="card-title" >Timetable</h4>
                 <div class="social-line">
                 </div>
               </div>
                   <div class="table-responsive">
-                    <table class="table">
+                   <table class="table" id="table">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -112,64 +112,334 @@
                       <tbody>
                         <tr>
                           <th scope="row">1</th>
-                          <td ><span id = "testtopopulate"> </span></td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td id ="1x1"><script> 
+                          if (localStorage.getItem("1x1") != null){
+                            document.getElementById('1x1').onclick = function() {
+                              var value1="1x1";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="1x2"><script> 
+                          if (localStorage.getItem("1x2") != null){
+                            document.getElementById('1x2').onclick = function() {
+                              var value1="1x2";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="1x3"><script> 
+                          if (localStorage.getItem("1x3") != null){
+                            document.getElementById('1x3').onclick = function() {
+                              var value1="1x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="1x4"><script> 
+                          if (localStorage.getItem("1x4") != null){
+                            document.getElementById('1x4').onclick = function() {
+                              var value1="1x4";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="1x5"><script> 
+                          if (localStorage.getItem("1x5") != null){
+                            document.getElementById('1x5').onclick = function() {
+                              var value1="1x5";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
                         </tr>
-                        <tr>
+                         <tr>
                           <th scope="row">2</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td id ="2x1"><script> 
+                          if (localStorage.getItem("2x1") != null){
+                            document.getElementById('2x1').onclick = function() {
+                              var value1="2x1";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="2x2"><script> 
+                          if (localStorage.getItem("2x2") != null){
+                            document.getElementById('2x2').onclick = function() {
+                              var value1="2x2";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="2x3"><script> 
+                          if (localStorage.getItem("2x3") != null){
+                            document.getElementById('2x3').onclick = function() {
+                              var value1="2x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="2x4"><script> 
+                          if (localStorage.getItem("2x4") != null){
+                            document.getElementById('2x4').onclick = function() {
+                              var value1="2x4";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="2x5"><script> 
+                          if (localStorage.getItem("2x5") != null){
+                            document.getElementById('2x5').onclick = function() {
+                              var value1="2x5";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
                         </tr>
-                        <tr>
+                         <tr>
                           <th scope="row">3</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td id ="3x1"><script> 
+                          if (localStorage.getItem("3x1") != null){
+                            document.getElementById('3x1').onclick = function() {
+                              var value1="3x1";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="3x2"><script> 
+                          if (localStorage.getItem("3x2") != null){
+                            document.getElementById('3x2').onclick = function() {
+                              var value1="3x2";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="3x3"><script> 
+                          if (localStorage.getItem("3x3") != null){
+                            document.getElementById('3x3').onclick = function() {
+                              var value1="3x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="3x4"><script> 
+                          if (localStorage.getItem("3x4") != null){
+                            document.getElementById('3x4').onclick = function() {
+                              var value1="3x4";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="3x5"><script> 
+                          if (localStorage.getItem("3x5") != null){
+                            document.getElementById('3x5').onclick = function() {
+                              var value1="3x5";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
                         </tr>
-                        <tr>
+                          <tr>
                           <th scope="row">4</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td id ="4x1"><script> 
+                          if (localStorage.getItem("4x1") != null){
+                            document.getElementById('4x1').onclick = function() {
+                              var value1="4x1";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="4x2"><script> 
+                          if (localStorage.getItem("4x2") != null){
+                            document.getElementById('4x2').onclick = function() {
+                              var value1="4x2";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="4x3"><script> 
+                          if (localStorage.getItem("4x3") != null){
+                            document.getElementById('4x3').onclick = function() {
+                              var value1="4x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="4x4"><script> 
+                          if (localStorage.getItem("4x4") != null){
+                            document.getElementById('4x4').onclick = function() {
+                              var value1="4x4";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="4x5"><script> 
+                          if (localStorage.getItem("4x5") != null){
+                            document.getElementById('4x5').onclick = function() {
+                              var value1="4x5";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
                         </tr>
                         <tr>
                           <th scope="row">Lun</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
-                        <tr>
+                          <tr>
                           <th scope="row">5</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td id ="5x1"><script> 
+                          if (localStorage.getItem("5x1") != null){
+                            document.getElementById('5x1').onclick = function() {
+                              var value1="5x1";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="5x2"><script> 
+                          if (localStorage.getItem("5x2") != null){
+                            document.getElementById('5x2').onclick = function() {
+                              var value1="5x2";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="5x3"><script> 
+                          if (localStorage.getItem("5x3") != null){
+                            document.getElementById('5x3').onclick = function() {
+                              var value1="5x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="5x4"><script> 
+                          if (localStorage.getItem("5x4") != null){
+                            document.getElementById('5x4').onclick = function() {
+                              var value1="5x4";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="5x5"><script> 
+                          if (localStorage.getItem("5x5") != null){
+                            document.getElementById('5x5').onclick = function() {
+                              var value1="5x5";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
                         </tr>
-                        <tr>
+                          <tr>
                           <th scope="row">6</th>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
-                          <td>Cell</td>
+                          <td id ="6x1"><script> 
+                          if (localStorage.getItem("6x1") != null){
+                            document.getElementById('6x1').onclick = function() {
+                              var value1="6x1";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="6x2"><script> 
+                          if (localStorage.getItem("6x2") != null){
+                            document.getElementById('6x2').onclick = function() {
+                              var value1="6x2";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="6x3"><script> 
+                          if (localStorage.getItem("6x3") != null){
+                            document.getElementById('6x3').onclick = function() {
+                              var value1="6x3";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="6x4"><script> 
+                          if (localStorage.getItem("6x4") != null){
+                            document.getElementById('6x4').onclick = function() {
+                              var value1="6x4";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
+                          <td id ="6x5"><script> 
+                          if (localStorage.getItem("6x5") != null){
+                            document.getElementById('6x5').onclick = function() {
+                              var value1="6x5";
+                              var queryString = "?para1=" + value1;
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+
+                          }
+                          </script></td>
                         </tr>
                       </tbody>
                     </table>
                       <div class="get_text" style= "padding: 1.5rem">
-                        <p> TO GET DIRECTIONS: Click on the on the lecture period</p>
+                        <p> TO GET DIRECTIONS: Click on the lecture period</p>
                       </div>
                 </div>
               </div>

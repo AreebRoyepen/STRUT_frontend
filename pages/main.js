@@ -84,17 +84,13 @@ function login() {
 
   }
 
-  function testing(value) {
-    localStorage.setItem("test",localStorage.getItem(value));
-    console.log(localStorage.getItem("test"));
-    
-  }
+
   // for directions page
-  function getBuildingNames(){
+  function getdirections(){
 
-    var request= new XMLHttpRequest();
+    //var request= new XMLHttpRequest();
 
-    var formData = new FormData();
+    //var formData = new FormData();
 
     // retreiving data from html page
     //var src = document.getElementById("source").value;
@@ -109,20 +105,25 @@ function login() {
 
 
     //sending post data to external api
-    request.open("POST","http://127.0.0.1:8000/api/navigate");
+    //request.open("POST","http://127.0.0.1:8000/api/navigate");
     
 
 
 
 
     // logic for handling received data
-	  request.onload=function(){
-		  var data=JSON.parse(request.responseText);
-      console.log(data);      
-    }
+	  //request.onload=function(){
+		 // var data=JSON.parse(request.responseText);
+      //console.log(data);      
+    //}
 
 	  //request.send(formData);
   
+    var location = document.getElementById("location").value;
+    var destination = document.getElementById("testing").value;
+    console.log(location);
+    console.log(destination);
+
 
   }
 
@@ -155,18 +156,22 @@ function examtimetable(){
     console.log(data[1]["period"]);
     document.getElementById("1x1").innerHTML = "sadas";
 
-    for (var i=0;i<3;i++) {
+    for (var i=0;i<data.length;i++) {
       console.log(i);
+      document.getElementById(parseInt(i+1)+ "x" + parseInt(1)).innerHTML =data[i]['date'] ;
+      document.getElementById(parseInt(i+1)+ "x" + parseInt(2)).innerHTML =data[i]['module'] ;
+      document.getElementById(parseInt(i+1)+ "x" + parseInt(3)).innerHTML =data[i]['venue'] ;
+      document.getElementById(parseInt(i+1)+ "x" + parseInt(4)).innerHTML =data[i]['period'] ;
+      localStorage.setItem("exam-" + parseInt(i+1)+ "x" + parseInt(3), String(data[i]['venue']));
+      console.log("setting -- " + "exam-" + parseInt(i+1)+ "x" + parseInt(3), String(data[i]['venue']) );
+      console.log("access = " +"exam-" + parseInt(i+1)+ "x" + parseInt(3) );
+      console.log("exam venue - " + String(data[i]['venue']) );
 
-      document.getElementById(parseInt(i+1)+ "x" + parseInt(i+1)).innerHTML =data[i]['date'] ;
-      document.getElementById(parseInt(i+1)+ "x" + parseInt(i+2)).innerHTML =data[i]['module'] ;
-      document.getElementById(parseInt(i+1)+ "x" + parseInt(i+3)).innerHTML =data[i]['venue'] ;
-      document.getElementById(parseInt(i+1)+ "x" + parseInt(i+4)).innerHTML =data[i]['period'] ;
     }
 
-    for (var i=1; i<7; i++ ){
-      for (var j=1; j<6; j++){
-        if (document.getElementById(String(i) +"x"+ String(j)).innerHTML == ""){
+    for (var i=1; i<6; i++ ){
+      for (var j=1; j<5; j++){
+        if (!document.getElementById(String(i) +"x"+ String(j)).innerHTML){
           document.getElementById(String(i) +"x"+ String(j)).onclick=null;
           console.log(String(i) +"x"+ String(j));
         }
@@ -181,4 +186,16 @@ function examtimetable(){
 
 }
 
+function bookvenue(){
+  
+  var venue = document.getElementById("venue").value;
+  var date = document.getElementById("date").value;
+  var period = document.getElementById("period").value;
 
+  console.log(venue);
+  console.log(date);
+  console.log(period);
+
+
+
+}
