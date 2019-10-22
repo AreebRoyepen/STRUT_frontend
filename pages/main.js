@@ -190,12 +190,68 @@ function bookvenue(){
   
   var venue = document.getElementById("venue").value;
   var date = document.getElementById("date").value;
-  var period = document.getElementById("period").value;
+  var period = document.getElementById("period").value;  
+
+  formData.append("period", period);
+  formData.append("date", date);
+  formData.append("venue", venue);
+  formData.append("id", "3750662");
 
   console.log(venue);
   console.log(date);
   console.log(period);
 
+    //sending post data to external api
+    request.open("POST","http://127.0.0.1:8000/api/bookVenue");
+  
 
+    // logic for handling received data
+    request.onload=function(){
+      var data=JSON.parse(request.responseText);
+      console.log(data);
+  
+      if (data.response){
+        console.log("SLAMAT");
+        
+        //document.location = ''
+  
+  
+      }
+     request.send(formData);
+    
+    }
+
+
+}
+
+function userInfo(){
+
+  var request= new XMLHttpRequest();
+
+  var formData = new FormData();
+
+  // retreiving data from html page
+
+  formData.append("studentNumber", "3750662");
+
+  //sending post data to external api
+  request.open("POST","http://127.0.0.1:8000/api/viewModules");
+  
+
+  // logic for handling received data
+  request.onload=function(){
+    var data=JSON.parse(request.responseText);
+    console.log(data);      
+
+    if (data.response){
+      console.log("SLAMAT");
+      
+      //document.location = ''
+
+
+    }
+ 	request.send(formData);
+  
+  }
 
 }
