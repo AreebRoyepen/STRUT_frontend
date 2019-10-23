@@ -8,8 +8,6 @@ function login() {
     var username = document.getElementById("login-page-username").value;
     var password = document.getElementById("login-page-password").value;
 
-    console.log(username + " " + password);
-
 
     formData.append("username", username);
     formData.append("password", password);
@@ -46,7 +44,6 @@ function login() {
     // retreiving data from html page
     //var username = document.getElementById("timetable-username").value;
     username = "3750662"
-    console.log(username);
     formData.append("studentNumber", username);
 
     //sending post data to external api
@@ -57,26 +54,20 @@ function login() {
 		  var data=JSON.parse(request.responseText);
       console.log(data);   
 
-      
+        //populating timetable and setting venue values for each one to pass to directions page when they get clicked
       for (var i in data) {
         document.getElementById(String(data[i]['period']) +"x"+ String(data[i]['day'])).innerHTML =data[i]['module'] ;
         localStorage.setItem(String(data[i]['period']) +"x"+ String(data[i]['day']), String(data[i]['venue']));
-        console.log(localStorage.getItem(String(data[i]['period']) +"x"+ String(data[i]['day'])));
-
-
-        //localStorage.setItem(String(data[i]['period']) +"x"+ String(data[i]['day']),data[i]['venue']);
       }
 
-      for (var i=1; i<7; i++ ){
-        for (var j=1; j<6; j++){
-          if (document.getElementById(String(i) +"x"+ String(j)).innerHTML == ""){
-            document.getElementById(String(i) +"x"+ String(j)).onclick=null;
-            console.log(String(i) +"x"+ String(j));
+        //disabling empty table elements
+        for (var i=1; i<6; i++ ){
+          for (var j=1; j<5; j++){
+            if (document.getElementById(String(i) +"x"+ String(j)).innerHTML == ""){
+              document.getElementById(String(i) +"x"+ String(j)).onclick=null;
+            }
           }
-        }
-      } 
-
-      console.log(data);
+        } 
     }
 
 
@@ -133,9 +124,7 @@ function examtimetable(){
   var formData = new FormData();
 
   // retreiving data from html page
-  //var username = document.getElementById("timetable-username").value;
   username = "3750662"
-  console.log(username);
   formData.append("studentNumber", username);
 
   //sending post data to external api
@@ -146,35 +135,27 @@ function examtimetable(){
     var data=JSON.parse(request.responseText);
     console.log(data);   
 
-    console.log(data[1]["venue"]);
-    console.log(data[1]["module"]);
-    console.log(data[1]["date"]);
-    console.log(data[1]["period"]);
-    document.getElementById("1x1").innerHTML = "sadas";
-
+    //populating table with user data received from database
     for (var i=0;i<data.length;i++) {
-      console.log(i);
+      //console.log(i);
       document.getElementById(parseInt(i+1)+ "x" + parseInt(1)).innerHTML =data[i]['date'] ;
       document.getElementById(parseInt(i+1)+ "x" + parseInt(2)).innerHTML =data[i]['module'] ;
       document.getElementById(parseInt(i+1)+ "x" + parseInt(3)).innerHTML =data[i]['venue'] ;
       document.getElementById(parseInt(i+1)+ "x" + parseInt(4)).innerHTML =data[i]['period'] ;
       localStorage.setItem("exam-" + parseInt(i+1)+ "x" + parseInt(3), String(data[i]['venue']));
-      console.log("setting -- " + "exam-" + parseInt(i+1)+ "x" + parseInt(3), String(data[i]['venue']) );
-      console.log("access = " +"exam-" + parseInt(i+1)+ "x" + parseInt(3) );
-      console.log("exam venue - " + String(data[i]['venue']) );
+
 
     }
 
+    //disabling table elements which have no data so they are not clickable
     for (var i=1; i<6; i++ ){
       for (var j=1; j<5; j++){
         if (!document.getElementById(String(i) +"x"+ String(j)).innerHTML){
           document.getElementById(String(i) +"x"+ String(j)).onclick=null;
-          console.log(String(i) +"x"+ String(j));
         }
       }
     } 
 
-    console.log(data);
   }
 
 
@@ -206,13 +187,10 @@ function bookvenue(){
       var data=JSON.parse(request.responseText);
       console.log(data);
   
-      if (data.response){
-        console.log("SLAMAT");
-        
-        //document.location = ''
-  
-  
-      }
+      //if (data.response){
+        //console.log("SLAMAT");
+        //document.location = ''  
+      //}
      request.send(formData);
     
     }
@@ -237,14 +215,31 @@ function userInfo(){
   // logic for handling received data
   request.onload=function(){
     var data=JSON.parse(request.responseText);
-    console.log(data);      
 
-    if (data.response){
-      console.log("SLAMAT");
-      
-      //document.location = ''
+    //Setting values of variables in html
+    document.getElementById("name").innerHTML = data.user.first_name;
+    document.getElementById("last name").innerHTML = data.user.last_name;
+    document.getElementById("email").innerHTML = String(data.user.username) + "@myuwc.ac.za" ;
+    document.getElementById("student number").innerHTML = data.user.username ;
 
+    var modules ="";
+
+    for(var i=0; i<data.modules.length;i++){
+      if (i==0){
+        modules += String(data.modules[i].modulename);
+      }else{
+      modules +=", " + String(data.modules[i].modulename);
+      }
     }
+
+    document.getElementById("modules").innerHTML = modules;
+      
+
+
+    //if (data.response){
+    //  console.log("SLAMAT");
+    //  document.location = ''
+    //}
   
   }
   request.send(formData);
