@@ -207,9 +207,9 @@ function bookvenue(){
         //console.log("SLAMAT");
         //document.location = ''  
       //}
-     request.send(formData);
     
     }
+    request.send(formData);
 
 
 }
@@ -237,21 +237,32 @@ function checkvenue(){
 
 
   
-    console.log("checkvenue executed");  
+
 
     // logic for handling received data
     request.onload=function(){
       var data=JSON.parse(request.responseText);
-      console.log(data);
+      var avail = document.getElementById("availability");
+      avail.value =data.message;
+      console.log(avail.value);
+
+      if(avail.value=="success"){
+        $("#availModal").modal("toggle");
+        document.getElementById("booking").disabled=false;
+      }else {
+        $("#notAvailModal").modal("toggle");
+        document.getElementById("booking").disabled=true;
+
+      }
+
   
       //if (data.response){
         //console.log("SLAMAT");
         //document.location = ''  
       //}
 
-
-    
     }
+
     request.send(formData);
     //console.log(data);
 

@@ -147,7 +147,7 @@
           <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:5% !important; margin-right:5% !important; margin-top:10% !important;">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" href="home-page.html">Close</button>
         </div>
       </div>
     </div>
@@ -200,22 +200,11 @@
               </div>
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#notAvailModal" id="availability"  onclick=checkvenue() >
-                <script>
-                 
-                 //if (document.getElementById("availability").value == ""){
-                 //  document.getElementById("booking").disabled= true ;
-                 //  document.getElementById("availability").onclick=checkvenue();
-                 //}else{
-                 //  document.getElementById("booking").onclick= true;
-                 //  document.getElementById("availability").onclick=bookvenue();
-                 //}
-
-                </script>
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem" id="availability"  onclick=checkvenue() >
                    CHECK AVAILABILITY
                 <div class="ripple-container"></div></button>
 
-                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#bookedModal"  id="booking" onclick=bookvenue()>
+                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#bookedModal"  id="booking" disabled onclick=bookvenue()>
                   <i class="material-icons">library_books</i>  BOOK VENUE   
                 <div class="ripple-container"></div></button>
                 
