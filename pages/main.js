@@ -79,41 +79,37 @@ function login() {
   // for directions page
   function getdirections(){
 
-    //var request= new XMLHttpRequest();
+    var request= new XMLHttpRequest();
 
-    //var formData = new FormData();
+    var formData = new FormData();
 
     // retreiving data from html page
-    //var src = document.getElementById("source").value;
 
-    //var dst = document.getElementById("destination").value;
-
-    //console.log(src + " " + dst);
-
-
-    //formData.append("from", src);
-    //formData.append("to", dst);
-
-
-    //sending post data to external api
-    //request.open("POST","http://127.0.0.1:8000/api/navigate");
-    
-
-
-
-
-    // logic for handling received data
-	  //request.onload=function(){
-		 // var data=JSON.parse(request.responseText);
-      //console.log(data);      
-    //}
-
-	  //request.send(formData);
-  
     var location = document.getElementById("location").value;
     var destination = document.getElementById("testing").value;
     console.log(location);
     console.log(destination);
+
+    formData.append("from", location);
+    formData.append("to", destination);
+
+      //sending post data to external api
+    request.open("POST","http://127.0.0.1:8000/api/navigate");
+    
+    //logic for handling received data
+	  request.onload=function(){
+		 var data=JSON.parse(request.responseText);
+      console.log(data);      
+
+      var queryString = "?locname=" + data.from.buildingName + "&locx=" + data.from.x + "&locy=" + data.from.y + 
+      "&destname=" + data.to.buildingName + "&desx=" + data.to.x+ "&desty=" + data.to.y;
+      window.location.href = 'mapDisplayPage-page.html' + queryString;
+
+
+    }
+
+	  request.send(formData);
+
 
 
   }
