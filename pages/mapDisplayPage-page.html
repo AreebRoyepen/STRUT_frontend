@@ -23,93 +23,82 @@
   <script src = "main.js" > </script>
 
   <!--Map Scripts-->  
-  <meta charset="utf-8" />
-  <script type='text/javascript'>
-  var map, infobox, directionsManager, directionWaypointLayer, userPin, watchId;
-  var transparentIcon = '<svg xmlns="http://www.w3.org/2000/svg"></svg>';
-  function GetMap()
-  {
+  <meta charset="utf-8"/>
+    <script type='text/javascript'>
+    var map, infobox, directionsManager, directionWaypointLayer, userPin, watchId, toc, pin;
+    var transparentIcon = '<svg xmlns="http://www.w3.org/2000/svg"></svg>';
 
-      var navigationBarMode = Microsoft.Maps.NavigationBarMode;
-      var bounds = Microsoft.Maps.LocationRect.fromLocations(new Microsoft.Maps.Location(-33.936909, 18.621872), new Microsoft.Maps.Location(-33.92802, 18.636002));
-      
-      //Editing map style and display
-      map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-          /* No need to set credentials if already passed in URL */
-          navigationBarMode: navigationBarMode.compact,
-          supportedMapTypes: [Microsoft.Maps.MapTypeId.aerial],
-          mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-          center: new Microsoft.Maps.Location(-33.932652, 18.627821),
-          minZoom: 18,
-          Zoom: 18, 
-          maxBounds: bounds,
-      });
+    function GetMap()
+    {
+        var navigationBarMode = Microsoft.Maps.NavigationBarMode;
+        var bounds = Microsoft.Maps.LocationRect.fromLocations(new Microsoft.Maps.Location(-33.936909, 18.621872), new Microsoft.Maps.Location(-33.92802, 18.636002));
+        
+        //Editing map style and display
+        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+            /* No need to set credentials if already passed in URL */
+            navigationBarMode: navigationBarMode.compact,
+            supportedMapTypes: [Microsoft.Maps.MapTypeId.aerial],
+            mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+            center: new Microsoft.Maps.Location(-33.932652, 18.627821),
+            minZoom: 18,
+            Zoom: 18, 
+            maxBounds: bounds,
+        });
 
-      //Title pushpin label for CAMS.
-      var tmp = new Microsoft.Maps.Location(-33.931774, 18.626502);
-      var titlePushpin = new Microsoft.Maps.Pushpin(tmp, {
-          icon: transparentIcon,
-          title: 'CAMS',
-      });
-      map.entities.push(titlePushpin);
+        //Title pushpin label for CAMS.
+        var tmp = new Microsoft.Maps.Location(-33.932169, 18.626713);
+        var titlePushpin = new Microsoft.Maps.Pushpin(tmp, {
+            icon: transparentIcon,
+            title: 'CAMS',
+        });
+        map.entities.push(titlePushpin);
 
-      //Create a layer for managing custom waypoints.
-      directionWaypointLayer = new Microsoft.Maps.Layer();
-      //Add mouse events for showing instruction when hovering pins in directions waypoint layer.
-      Microsoft.Maps.Events.addHandler(directionWaypointLayer, 'mouseover', showInstruction);
-      Microsoft.Maps.Events.addHandler(directionWaypointLayer, 'mouseout', hideInstruction);
-      map.layers.insert(directionWaypointLayer);
-      //Create a reusable infobox.
-      infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
-          showCloseButton: false,
-          visible: false
-      });
-      infobox.setMap(map);
-      //Load the directions module.
-      Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-          //Create an instance of the directions manager.
-          directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-          directionsManager.setRequestOptions({
-              routeMode: Microsoft.Maps.Directions.RouteMode.walking
-          });
-          
+        //Create a layer for managing custom waypoints.
+        directionWaypointLayer = new Microsoft.Maps.Layer();
+        //Add mouse events for showing instruction when hovering pins in directions waypoint layer.
+        Microsoft.Maps.Events.addHandler(directionWaypointLayer, 'mouseover', showInstruction);
+        Microsoft.Maps.Events.addHandler(directionWaypointLayer, 'mouseout', hideInstruction);
+        map.layers.insert(directionWaypointLayer);
+        //Create a reusable infobox.
+        infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+            showCloseButton: false,
+            visible: false
+        });
+        infobox.setMap(map);
+        //Load the directions module.
+        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+            //Create an instance of the directions manager.
+            directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+            directionsManager.setRequestOptions({
+                routeMode: Microsoft.Maps.Directions.RouteMode.walking,
+            });
 
-  // GETTING VALUES FROM DIRECTIONS PAGE
+            //Create waypoints to route between two places
+            //Departure
+            var depart = '-33.932356, 18.627803'; //B Block
+            var arrive = '-33.930889, 18.627344'; //A Block
 
-  var queryString = decodeURIComponent(window.location.search);
-  queryString = queryString.substring(1);
-  var queries = queryString.split("&");
-  var arrayOfArgs = []
-  for (var i = 0; i < queries.length; i++)
-  {
-    console.log(queries[i]);
-    x = queries[i].split("=");
+            directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address:depart}));
+            
+            //Arrival
+            directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address:arrive}));
+                
+            //Hide all default waypoint pushpins
+            directionsManager.setRenderOptions({
+            	itineraryContainer: document.getElementById('printoutpanel'),
+                firstWaypointPushpinOptions: { visible: false },
+                lastWaypointPushpinOptions: { visible: false },
+                waypointPushpinOptions: { visible: false }
+            });
 
-    arrayOfArgs.push(x[1]);
-  }
+            Microsoft.Maps.Events.addHandler(directionsManager, 'directionsUpdated', directionsUpdated);
+            
+            //Calculate directions.
+            directionsManager.calculateDirections();
 
-  console.log(arrayOfArgs);
-
-
-          //Create waypoints to route between two places
-          //Departure
-          directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address: '-33.932356, 18.627803' }));
-          
-          //Arrival
-          directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address: '-33.930889, 18.627344' }));
-              
-          //Hide all default waypoint pushpins
-          directionsManager.setRenderOptions({
-              firstWaypointPushpinOptions: { visible: false },
-              lastWaypointPushpinOptions: { visible: false },
-              waypointPushpinOptions: { visible: false }
-          });
-
-          Microsoft.Maps.Events.addHandler(directionsManager, 'directionsUpdated', directionsUpdated);
-          
-          //Calculate directions.
-          directionsManager.calculateDirections();
-      });
+            StartTracking();
+           	setInterval(startInterval,10);
+        });
     }
     function directionsUpdated(e) {
         directionWaypointLayer.clear();
@@ -146,12 +135,8 @@
                     }
                     if (isWaypoint) {
                         pin = new Microsoft.Maps.Pushpin(step.coordinate, {
-                            /*icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="49.4" viewBox="0 0 37 35" xml:space="preserve"><circle cx="32" cy="30" r="4" style="stroke-width:2;stroke:#ffffff;fill:#000000;"/><circle cx="16" cy="16" r="14" style="fill:{color}"/><text x="15" y="20" style="font-size:9px;font-family:arial;fill:#ffffff;" text-anchor="middle">{text}</text></svg>',*/
-                            icon: 'images/poi_custom.png',
                             anchor: new Microsoft.Maps.Point(12, 39),
-                            color: waypointColor,
-                            //text: waypointLabel[waypointCnt]    //Give waypoints a letter as a label.
-                            
+                            color: waypointColor,                            
                         });
                         //Store the instruction information in the metadata.
                         pin.metadata = {
@@ -199,11 +184,10 @@
 
 
     //User tracking from here on
-
     function StartTracking() {
         //Add a pushpin to show the user's location.
-        userPin = new Microsoft.Maps.Pushpin(map.getCenter(), { visible: false });
-        map.entities.push(gpsPin);
+        userPin = new Microsoft.Maps.Pushpin(map.getCenter(), { visible: false, icon: "../assets/img/icons/UserIcon.png"});
+        map.entities.push(userPin);
 
         //Watch the users location.
         watchId = navigator.geolocation.watchPosition(UsersLocationUpdated);
@@ -220,21 +204,41 @@
 
         //Center the map on the user's location.
         map.setView({ center: loc });
+        var num = getDistanceFromLatLonInKm(userPin.getLocation().latitude,userPin.getLocation().longitude,-33.930889,18.627344);
+        console.log("The distance"+num);
     }
 
-    function StopTracking() {
-        // Cancel the geolocation updates.
-        navigator.geolocation.clearWatch(watchId);
+    //get distance to prompt venues modal for in building directions
+    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+	  var R = 6371; // Radius of the earth in km
+	  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+	  var dLon = deg2rad(lon2-lon1); 
+	  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+	  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  var d = R * c; // Distance in km
+	  return d;
+	}
 
-        //Remove the user pushpin.
-        userPin.clear();
-    }
-
+	function deg2rad(deg) {
+	  return deg * (Math.PI/180);
+	}
 
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AgtXsLMJVD16NtJHUlQZMJ0nq6VjKiMI3wrK52o1rJzW7BOjbkh-CXXD6pH_XDkq' async defer></script>
 
 
+  <style>
+    .modal fade{
+    display: block !important;
+    }
+    .modal-dialog{
+          overflow-y: initial !important
+    }
+    .modal-body{
+      height: 600px;
+      overflow-y: auto;
+    }
+  </style>
 </head>
 
 <body class="landing-page sidebar-collapse">
@@ -287,6 +291,26 @@
       </div>
     </div>
   </nav>
+
+  <!-- Modal  -->
+  <div class="modal fade" id="myDirectionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="margin-left:22%;">DIRECTIONS DETAILS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div id = 'printoutpanel'></div>
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" style=" margin-top:5%;">Hide Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <div class="page-header header-filter" style="background-image: url('../assets/img/Background.png')"; background-size: cover; background-position: top center;>
     <div class="container">
@@ -295,28 +319,25 @@
         <div class="col-lg-4 col-md-6 ml-auto mr-auto" style="margin-top:1rem;">
           <div class="card card-login">
 
-          
-
             <!-- Map Display  -->
             <div class="border border-primary rounded" Style="border-color:#9c3ab1 !Important; border-width:2px !important;">
-              <div id="myMap" style="position:relative; width:100%; height:70vh;"></div>
-
-              <!--
-              <input type="button" value="Start Continuous Tracking" onclick="StartTracking()" />
-              <input type="button" value="Stop Continuous Tracking" onclick="StopTracking()"/>
-              -->            
+              <div id="myMap" style="position:relative; width:100%; height:65vh;"></div>        
             </div>
           </div>  
         </div>
       </div>
-
-              
-      <button class="btn btn-primary btn-round" onclick=getdirections() >
+        
+      <button class="col btn btn-primary btn-round" data-toggle="modal" data-target="#myDirectionsModal">
+                  <i class="fas fa-eye"></i> VIEW DETAILS
+      <div class="ripple-container"></div></button>
+      <button class="col btn btn-primary btn-round" onclick=getdirections() >
                   <i class="fas fa-arrow-left"></i> BACK
       <div class="ripple-container"></div></button>
     </div>
   </div>
 
+
+<!--<div id = 'printoutpanel'></div>  -->
   
   
       
