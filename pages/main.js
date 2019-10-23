@@ -8,7 +8,8 @@ function login() {
     var username = document.getElementById("login-page-username").value;
     var password = document.getElementById("login-page-password").value;
 
-
+    sessionStorage.setItem('username', username);
+    console.log(sessionStorage.getItem('username'));
     formData.append("username", username);
     formData.append("password", password);
 
@@ -26,6 +27,9 @@ function login() {
         
         document.location = 'home-page.html'
         console.log(data.response);
+      }else{
+        document.location = 'login-page.html'
+
       }
     }
 
@@ -43,8 +47,8 @@ function login() {
 
     // retreiving data from html page
     //var username = document.getElementById("timetable-username").value;
-    username = "3750662"
-    formData.append("studentNumber", username);
+    formData.append("studentNumber", sessionStorage.getItem('username'));
+    console.log(sessionStorage.getItem('username'));
 
     //sending post data to external api
     request.open("POST","http://127.0.0.1:8000/api/viewTimetable");
@@ -135,8 +139,7 @@ function examtimetable(){
   var formData = new FormData();
 
   // retreiving data from html page
-  username = "3750662"
-  formData.append("studentNumber", username);
+  formData.append("studentNumber", sessionStorage.getItem('username'));
 
   //sending post data to external api
   request.open("POST","http://127.0.0.1:8000/api/viewExamTimetable");
@@ -187,7 +190,7 @@ function bookvenue(){
   formData.append("period", period);
   formData.append("date", date);
   formData.append("venue", venue);
-  formData.append("id", "3750662");
+  formData.append("id", sessionStorage.getItem('username'));
 
   console.log(venue);
   console.log(date);
@@ -221,7 +224,7 @@ function userInfo(){
 
   // retreiving data from html page
 
-  formData.append("studentNumber", "3750662");
+  formData.append("studentNumber", sessionStorage.getItem('username'));
 
   //sending post data to external api
   request.open("POST","http://127.0.0.1:8000/api/studentDetails");
