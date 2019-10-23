@@ -140,18 +140,14 @@
                   </div>
                   <input id="testing" name='testing' type="text" class="form-control" placeholder="Your Destination Eg. B1..."  ;>
                   <script>
+                      //grabbing query string from the url and slicing it so it can be used
                       var queryString = decodeURIComponent(window.location.search);
                       queryString = queryString.substring(1);
                       queryString.slice(5,);
-                      console.log(queryString)
-                      console.log( queryString.slice(6,) + " <--here");
 
-
+                      //putting the query string value into the input element above
                       document.getElementById('testing').value = localStorage.getItem(queryString.slice(6,));
-                      console.log("trying to access - " + queryString.slice(6,) );
-
                       
-                     // localStorage.clear();
                   </script>
                 </div>
                 
@@ -159,7 +155,7 @@
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
         
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#myModal"  onclick=getdirections() >
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem"  onclick=location.href="mapDisplayPage-page.html" >
                   <i class="material-icons">library_books</i> GET DIRECTIONS
                 <div class="ripple-container"></div></button>
               </div>
@@ -181,8 +177,6 @@
   <script src="../assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 </body>
