@@ -101,10 +101,21 @@ function login() {
 		 var data=JSON.parse(request.responseText);
       console.log(data);      
 
-      var queryString = "?locname=" + data.from.buildingName + "&locx=" + data.from.x + "&locy=" + data.from.y + 
+      if (data.venue == false){
+        var queryString = "?locname=" + data.from.buildingName + "&locx=" + data.from.x + "&locy=" + data.from.y + 
       "&destname=" + data.to.buildingName + "&desx=" + data.to.x+ "&desty=" + data.to.y;
-      window.location.href = 'mapDisplayPage-page.html' + queryString;
 
+      window.location.href = 'mapDisplayPage-page.html' + queryString;
+      }else{
+        var queryString = "?locname=" + data.from.buildingName + "&locx=" + data.from.x + "&locy=" + data.from.y + 
+      "&destname=" + data.to.buildingName + "&desx=" + data.to.x+ "&desty=" + data.to.y 
+      + "&venuename=" + data.venue.venueName+ "&venuepath=" + data.venue.venuePath;
+
+      window.location.href = 'mapDisplayPage-page.html' + queryString;
+  
+      }
+
+      
 
     }
 
@@ -165,6 +176,10 @@ function examtimetable(){
 
 function bookvenue(){
   
+  var request= new XMLHttpRequest();
+
+  var formData = new FormData();
+
   var venue = document.getElementById("venue").value;
   var date = document.getElementById("date").value;
   var period = document.getElementById("period").value;  
