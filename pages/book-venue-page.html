@@ -200,11 +200,22 @@
               </div>
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#notAvailModal"  >
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#notAvailModal" id="availability"  onclick=checkvenue() >
+                <script>
+                 
+                 //if (document.getElementById("availability").value == ""){
+                 //  document.getElementById("booking").disabled= true ;
+                 //  document.getElementById("availability").onclick=checkvenue();
+                 //}else{
+                 //  document.getElementById("booking").onclick= true;
+                 //  document.getElementById("availability").onclick=bookvenue();
+                 //}
+
+                </script>
                    CHECK AVAILABILITY
                 <div class="ripple-container"></div></button>
 
-                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#bookedModal" >
+                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#bookedModal"  id="booking" onclick=bookvenue()>
                   <i class="material-icons">library_books</i>  BOOK VENUE   
                 <div class="ripple-container"></div></button>
                 

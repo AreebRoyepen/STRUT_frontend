@@ -165,6 +165,10 @@ function examtimetable(){
 
 function bookvenue(){
   
+  var request= new XMLHttpRequest();
+
+  var formData = new FormData();
+
   var venue = document.getElementById("venue").value;
   var date = document.getElementById("date").value;
   var period = document.getElementById("period").value;  
@@ -174,11 +178,9 @@ function bookvenue(){
   formData.append("venue", venue);
   formData.append("id", "3750662");
 
-  console.log(venue);
-  console.log(date);
-  console.log(period);
+  console.log("book venue executed");
 
-    //sending post data to external api
+  //sending post data to external api
     request.open("POST","http://127.0.0.1:8000/api/bookVenue");
   
 
@@ -194,6 +196,51 @@ function bookvenue(){
      request.send(formData);
     
     }
+
+
+}
+
+
+function checkvenue(){
+  
+  var request= new XMLHttpRequest();
+
+  var formData = new FormData();
+
+  var venue = document.getElementById("venue").value;
+  var date = document.getElementById("date").value;
+  var period = document.getElementById("period").value;  
+
+  formData.append("period", period);
+  formData.append("date", date);
+  formData.append("venue", venue);
+  formData.append("id", "3750662");
+
+
+
+    //sending post data to external api
+    request.open("POST","http://127.0.0.1:8000/api/checkVenue");
+
+
+  
+    console.log("checkvenue executed");  
+
+    // logic for handling received data
+    request.onload=function(){
+      var data=JSON.parse(request.responseText);
+      console.log(data);
+  
+      //if (data.response){
+        //console.log("SLAMAT");
+        //document.location = ''  
+      //}
+
+
+    
+    }
+    request.send(formData);
+    //console.log(data);
+
 
 
 }
