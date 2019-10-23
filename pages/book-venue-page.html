@@ -83,23 +83,71 @@
       </div>
     </div>
   </nav>
-  <!-- Modal  -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+  <!-- Booked Modal  -->
+  <div class="modal fade" id="bookedModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h3 class="modal-title" style="margin-left:22%;">VENUE BOOKED</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <i class="material-icons">clear</i>
           </button>
         </div>
+          <img src="../assets/img/icons/success.png" class="img-fluid" style="width:40px; height:100%; margin-left:45%; margin-top:5% !important;"> 
+        <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:10% !important; margin-right:10% !important; margin-bottom:0% !important;">
         <div class="modal-body">
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-          </p>
+          <h4 align="center">A confirmation email will</h4>
+          <h4 align="center">be sent to you shortly</h4>
+          <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:5% !important; margin-right:5% !important; margin-top:10% !important;">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-link">Nice Button</button>
-          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal Not Available -->
+  <div class="modal fade" id="notAvailModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" style="margin-left:22%;">AVAILABILITY</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+          <img src="../assets/img/icons/notAvailable.png" class="img-fluid" style="width:40px; height:100%; margin-left:45%; margin-top:5% !important;"> 
+        <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:10% !important; margin-right:10% !important; margin-bottom:0% !important;">
+        <div class="modal-body">
+          <h4 align="center">This venue isn't available!</h4>
+          <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:5% !important; margin-right:5% !important; margin-top:10% !important;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Confirmation Modal Available -->
+  <div class="modal fade" id="availModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" style="margin-left:22%;">VENUE BOOKED</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+          <img src="../assets/img/icons/success.png" class="img-fluid" style="width:40px; height:100%; margin-left:45%; margin-top:5% !important;"> 
+        <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:10% !important; margin-right:10% !important; margin-bottom:0% !important;">
+        <div class="modal-body">
+          <h4 align="center">This venue is available!</h4>
+          <hr class="light" style="border-top: 1px solid #d5d5d5; margin-left:5% !important; margin-right:5% !important; margin-top:10% !important;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -152,12 +200,11 @@
               </div>
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
-        
-                <button class="btn btn-primary btn-round"  style= "margin: 2rem" onclick="bookvenue()" >
+                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal" data-target="#notAvailModal"  >
                    CHECK AVAILABILITY
                 <div class="ripple-container"></div></button>
 
-                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#myModal"  onclick="alert('hello')" >
+                <button class="btn btn-primary btn-round"  style= "margin-bottom: 2rem" data-toggle="modal" data-target="#bookedModal" >
                   <i class="material-icons">library_books</i>  BOOK VENUE   
                 <div class="ripple-container"></div></button>
                 
