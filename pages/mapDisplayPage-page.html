@@ -73,10 +73,27 @@
                 routeMode: Microsoft.Maps.Directions.RouteMode.walking,
             });
 
+            // GETTING VALUES FROM DIRECTIONS PAGE
+
+            var queryString = decodeURIComponent(window.location.search);
+            queryString = queryString.substring(1);
+            var queries = queryString.split("&");
+            var arrayOfArgs = []
+            for (var i = 0; i < queries.length; i++)
+            {
+              console.log(queries[i]);
+              x = queries[i].split("=");
+
+              arrayOfArgs.push(x[1]);
+            }
+
+            console.log(arrayOfArgs);
+
+
             //Create waypoints to route between two places
             //Departure
-            var depart = '-33.932356, 18.627803'; //B Block
-            var arrive = '-33.930889, 18.627344'; //A Block
+            var depart = arrayOfArgs[1]+ ","+arrayOfArgs[2]; //B Block
+            var arrive = arrayOfArgs[4]+ ","+arrayOfArgs[5]; //A Block
 
             directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address:depart}));
             
