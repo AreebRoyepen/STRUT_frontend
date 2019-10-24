@@ -39,6 +39,11 @@ function login() {
 
 // provides data to populate timetable
 // need to provide student number
+
+function hello(){
+
+  return "../assets/img/floorPlans/" +  localStorage.getItem("dest-value")  + ".png";
+}
   function timetable(){
 
     var request= new XMLHttpRequest();
@@ -91,11 +96,12 @@ function login() {
 
     var location = document.getElementById("location").value;
     var destination = document.getElementById("testing").value;
-    console.log(location);
-    console.log(destination);
 
-    formData.append("from", location);
-    formData.append("to", destination);
+    console.log(location);
+    console.log(destination); 
+
+    formData.append("from", location.toUpperCase());
+    formData.append("to", destination.toUpperCase());
 
       //sending post data to external api
     request.open("POST","http://127.0.0.1:8000/api/navigate");
@@ -189,7 +195,7 @@ function bookvenue(){
 
   formData.append("period", period);
   formData.append("date", date);
-  formData.append("venue", venue);
+  formData.append("venue", venue.toUpperCase());
   formData.append("id", sessionStorage.getItem('username'));
 
   console.log("book venue executed");
@@ -227,7 +233,7 @@ function checkvenue(){
 
   formData.append("period", period);
   formData.append("date", date);
-  formData.append("venue", venue);
+  formData.append("venue", venue.toUpperCase());
   formData.append("id", "3750662");
 
 
@@ -268,6 +274,13 @@ function checkvenue(){
 
 
 
+}
+
+
+function BackToDirections(back_value){
+  console.log(back_value);
+  document.getElementById('testing').innerHTML = back_value;
+  console.log("value changed");
 }
 
 function userInfo(){

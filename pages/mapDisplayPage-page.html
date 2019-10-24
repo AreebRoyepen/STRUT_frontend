@@ -41,8 +41,12 @@
 
               arrayOfArgs.push(x[1]);
             }
-
+            localStorage.setItem("back_value",arrayOfArgs[6]);
+            localStorage.setItem("dest-value",arrayOfArgs[6]);
+            localStorage.setItem("dest-desc",arrayOfArgs[7]);
+            console.log(localStorage.getItem("back_value") + "<---------");
             console.log(arrayOfArgs);
+
 
     function GetMap()
     {
@@ -112,8 +116,7 @@
             //Calculate directions.
             directionsManager.calculateDirections();
 
-            StartTracking();
-           	setInterval(startInterval,10);
+
         });
     }
     function directionsUpdated(e) {
@@ -222,11 +225,37 @@
         map.setView({ center: loc });
         var num = getDistanceFromLatLonInKm(userPin.getLocation().latitude,userPin.getLocation().longitude, parseFloat(arrayOfArgs[4]) , parseFloat(arrayOfArgs[5]));
         console.log("The distance"+num);
-        if(num<=0.02){
 
-            console.log("BOB");
+        if(num>=0.03){
+          var venue = localStorage.getItem("dest-value");
+          console.log(localStorage.getItem("dest-desc"));
+
+          if(venue == "SUNLAB"){
+            $("#SunlabModal").modal("toggle");
+          }else if(venue == "WINLAB"){
+            $("#WinlabModal").modal("toggle");
+          }else if(venue == "A1"){
+            $("#A1Modal").modal("toggle");
+          }else{
+            $("#B1Modal").modal("toggle");
+          } 
+                
+                
+         
+
+        StopTracking();           
 
         }
+    }
+
+    function StopTracking() {
+        // Cancel the geolocation updates.
+        navigator.geolocation.clearWatch(watchId);
+
+    }
+
+    function start_call() {
+      setInterval(StartTracking(),10);
     }
 
     //get distance to prompt venues modal for in building directions
@@ -262,7 +291,7 @@
   </style>
 </head>
 
-<body class="landing-page sidebar-collapse">
+<body class="landing-page sidebar-collapse" onload="start_call()">
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
@@ -351,7 +380,19 @@
       <button class="col btn btn-primary btn-round" data-toggle="modal" data-target="#myDirectionsModal">
                   <i class="fas fa-eye"></i> VIEW DETAILS
       <div class="ripple-container"></div></button>
-      <button class="col btn btn-primary btn-round" onclick=getdirections() >
+      <button class="col btn btn-primary btn-round" id="backbutton" >
+                        <script>
+
+                              document.getElementById('backbutton').onclick = function() {
+
+                              var queryString = "?para1=" + localStorage.getItem("back_value");
+                              window.location.href = "directions-page.html" + queryString;
+                            }
+                              
+
+                          
+                        
+                  </script>
                   <i class="fas fa-arrow-left"></i> BACK
       <div class="ripple-container"></div></button>
     </div>
@@ -359,27 +400,149 @@
 
 
   <!-- FLoor Plan  -->
-  <div class="modal fade" id="floorPlanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+  <div class="modal fade" id="SunlabModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 30%; margin-bottom:50px;">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" style="margin-left:22%;">VENUE DIRECTIONS DETAILS</h5>
+          <h5 class="modal-title" style="margin-left:10%;">VENUE DIRECTIONS DETAILS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <i class="material-icons">clear</i>
+            <i class="material-icons">clear</i> 
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="height: 40%;">
           <div class="container my-container">
             <div class="row ml-0.8 mr-0,8 my-row0">
-                <img src="../assets/img/floorPlans/CAMS_SUNLAB.png" class="img-fluid">
-            </div>
-            <div class="row ml-0.8 mr-0,8 my-row1">
-                <!-- Insert the details (IE. Details pulled from the database)  -->
+                <img id="floorplan" src="../assets/img/floorPlans/Sunlab.png" class="img-fluid">
+
+            </div> 
+            <div class="row ml-0.8 mr-0,8 my-row1" style="height:25% !Important;">
+                  <h6 id = 'modal-desc-sun' class="modal-title" style="margin-top: 1rem; font-size:16px;">  </h6>
+
+                  <script>
+                  
+                  var x = localStorage.getItem("dest-desc");
+
+                  console.log(x);
+                  var y = x.split(',').join("\n");
+
+                  console.log(y);
+                  document.getElementById('modal-desc-sun').innerHTML =  y; </script> 
             </div>
           </div> 
          </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" style=" margin-top:5%;">Hide Details</button>
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" style=" margin-top:5%;" onclick=location.href="home-page.html">Done</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="modal fade" id="A1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 30%; margin-bottom:50px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="margin-left:10%;">VENUE DIRECTIONS DETAILS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i> 
+          </button>
+        </div>
+        <div class="modal-body" style="height: 40%;">
+          <div class="container my-container">
+            <div class="row ml-0.8 mr-0,8 my-row0">
+                <img id="floorplan" src='../assets/img/floorPlans/A1.png' class="img-fluid">
+
+            </div> 
+            <div class="row ml-0.8 mr-0,8 my-row1" style="height:25% !Important;">
+                   <h6 id = 'modal-desc-a1' class="modal-title" style="margin-top: 1rem; font-size:16px;">  </h6>
+
+                  <script>
+                  
+                  var x = localStorage.getItem("dest-desc");
+
+                  console.log(x);
+                  var y = x.split(',').join("\n");
+
+                  console.log(y);
+                  document.getElementById('modal-desc-a1').innerHTML =  y; </script> 
+            </div>
+          </div> 
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" style=" margin-top:5%;" onclick=location.href="home-page.html">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="B1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 30%; margin-bottom:50px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="margin-left:10%;">VENUE DIRECTIONS DETAILS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i> 
+          </button>
+        </div>
+        <div class="modal-body" style="height: 40%;">
+          <div class="container my-container">
+            <div class="row ml-0.8 mr-0,8 my-row0">
+                <img id="floorplan" src="../assets/img/floorPlans/B1.png" class="img-fluid">
+
+            </div> 
+            <div class="row ml-0.8 mr-0,8 my-row1" style="height:25% !Important;">
+                <h6 id = 'modal-desc' class="modal-title" style="margin-top: 1rem; font-size:16px;">  </h6>
+
+                  <script>
+                  
+                  var x = localStorage.getItem("dest-desc");
+
+                  console.log(x);
+                  var y = x.split(',').join("\n");
+
+                  console.log(y);
+                  document.getElementById('modal-desc').innerHTML =  y; </script> 
+            </div>
+          </div> 
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" style=" margin-top:5%;" onclick=location.href="home-page.html">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="WinlabModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 30%; margin-bottom:50px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="margin-left:10%;">VENUE DIRECTIONS DETAILS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i> 
+          </button>
+        </div>
+        <div class="modal-body" style="height: 40%;">
+          <div class="container my-container">
+            <div class="row ml-0.8 mr-0,8 my-row0">
+                <img id="floorplan" src="../assets/img/floorPlans/Winlab.png" class="img-fluid">
+
+            </div> 
+            <div class="row ml-0.8 mr-0,8 my-row1" style="height:25% !Important;">
+                <h6 id = 'modal-desc-win' class="modal-title" style="margin-top: 1rem; font-size:16px;">  </h6>
+
+                  <script>
+                  
+                  var x = localStorage.getItem("dest-desc");
+
+                  console.log(x);
+                  var y = x.split(',').join("\n");
+
+                  console.log(y);
+                  document.getElementById('modal-desc-win').innerHTML =  y; </script> 
+            </div>
+          </div> 
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-round" data-dismiss="modal" style=" margin-top:5%;" onclick=location.href="home-page.html">Done</button>
         </div>
       </div>
     </div>
@@ -396,8 +559,7 @@
   <script src="../assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 </body>

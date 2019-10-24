@@ -146,7 +146,14 @@
                       queryString.slice(5,);
 
                       //putting the query string value into the input element above
+                      console.log(queryString);
+                      if (queryString.includes("x")){
                       document.getElementById('testing').value = localStorage.getItem(queryString.slice(6,));
+
+                      }else{
+                        document.getElementById('testing').value = queryString.slice(6,);
+
+                      }
                       
                   </script>
                 </div>
@@ -155,7 +162,7 @@
               <div class="footer text-center">
                 <!--  button style takes onclick param and then call desired method from main.js as shown below-->
                 
-                                <button class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal"  onclick=getdirections() >
+                                <button  class="btn btn-primary btn-round"  style= "margin: 2rem" data-toggle="modal"  onclick=getdirections() >
 
                   <i class="material-icons">library_books</i> GET DIRECTIONS
                 <div class="ripple-container"></div></button>
