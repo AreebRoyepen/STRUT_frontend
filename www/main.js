@@ -36,6 +36,54 @@ function login() {
 	request.send(formData);
 }
 
+function userInfo(){
+
+  var request= new XMLHttpRequest();
+
+  var formData = new FormData();
+
+  // retreiving data from html page
+
+  formData.append("studentNumber", sessionStorage.getItem('username'));
+
+  //sending post data to external api
+  request.open("POST","http://127.0.0.1:8000/api/studentDetails");
+  
+
+  // logic for handling received data
+  request.onload=function(){
+    var data=JSON.parse(request.responseText);
+
+    //Setting values of variables in html
+    document.getElementById("name").innerHTML = data.user.first_name;
+    document.getElementById("last name").innerHTML = data.user.last_name;
+    document.getElementById("email").innerHTML = String(data.user.username) + "@myuwc.ac.za" ;
+    document.getElementById("student number").innerHTML = data.user.username ;
+
+    var modules ="";
+
+    for(var i=0; i<data.modules.length;i++){
+      if (i==0){
+        modules += String(data.modules[i].modulename);
+      }else{
+      modules +=", " + String(data.modules[i].modulename);
+      }
+    }
+
+    document.getElementById("modules").innerHTML = modules;
+      
+
+
+    //if (data.response){
+    //  console.log("SLAMAT");
+    //  document.location = ''
+    //}
+  
+  }
+  request.send(formData);
+
+}
+
 
 // provides data to populate timetable
 // need to provide student number
@@ -283,50 +331,3 @@ function BackToDirections(back_value){
   console.log("value changed");
 }
 
-function userInfo(){
-
-  var request= new XMLHttpRequest();
-
-  var formData = new FormData();
-
-  // retreiving data from html page
-
-  formData.append("studentNumber", sessionStorage.getItem('username'));
-
-  //sending post data to external api
-  request.open("POST","http://127.0.0.1:8000/api/studentDetails");
-  
-
-  // logic for handling received data
-  request.onload=function(){
-    var data=JSON.parse(request.responseText);
-
-    //Setting values of variables in html
-    document.getElementById("name").innerHTML = data.user.first_name;
-    document.getElementById("last name").innerHTML = data.user.last_name;
-    document.getElementById("email").innerHTML = String(data.user.username) + "@myuwc.ac.za" ;
-    document.getElementById("student number").innerHTML = data.user.username ;
-
-    var modules ="";
-
-    for(var i=0; i<data.modules.length;i++){
-      if (i==0){
-        modules += String(data.modules[i].modulename);
-      }else{
-      modules +=", " + String(data.modules[i].modulename);
-      }
-    }
-
-    document.getElementById("modules").innerHTML = modules;
-      
-
-
-    //if (data.response){
-    //  console.log("SLAMAT");
-    //  document.location = ''
-    //}
-  
-  }
-  request.send(formData);
-
-}
